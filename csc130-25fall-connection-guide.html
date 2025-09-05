@@ -15,16 +15,27 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* Tailwind gray-50 */
         }
-        /* Style for the video placeholder */
-        .video-placeholder {
-            background-color: #e2e8f0; /* Tailwind gray-200 */
-            border: 2px dashed #94a3b8; /* Tailwind gray-400 */
-        }
         /* ADA focus styles */
         .focusable:focus-visible {
             outline: 3px solid #2563eb; /* Tailwind blue-600 */
             outline-offset: 2px;
             border-radius: 0.375rem; /* rounded-md */
+        }
+        /* Aspect ratio plugin is not included in CDN by default, so add custom styles for responsive video */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -55,6 +66,28 @@
                 <p class="text-gray-700 leading-relaxed">
                     This guide will walk you through the initial steps to get connected to the course network and access your personal WordPress development environment. Please follow the steps carefully. The video guide below provides a complete walkthrough of this process.
                 </p>
+            </section>
+
+            <!-- Video Walkthrough -->
+            <section class="bg-white p-6 sm:p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900">Video Walkthrough</h2>
+                <!-- YouTube embed -->
+                <div class="video-container rounded-lg shadow-md">
+                    <iframe src="https://www.youtube.com/embed/2Zgp4l3MIMM?si=xRelwZp8n1Zw3PLB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <!-- Transcript Section -->
+                <div class="mt-6">
+                    <details class="group">
+                        <summary class="focusable list-none cursor-pointer font-semibold text-blue-700 hover:underline">
+                            <span class="group-open:hidden">Show Transcript</span>
+                            <span class="hidden group-open:inline">Hide Transcript</span>
+                        </summary>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-600 leading-relaxed whitespace-pre-wrap">hello maybe i should have done this earlier but this is going to be for the fall 2025 semester this is the um connection guide how you're going to connect to wordpress okay and i'm going to walk through this so that you can see it now you may have in your course you may have this stuff you may see this right openvpn ignore all this just ignore it don't follow through with whatever this says ignore it connecting to your virtual machine ignore all this we're not using virtual machines this semester we're just using wordpress sites that you can access through a web browser starting wordpress ignore this as well okay and so this is the guide this is what we're going to follow and i'll walk you through this and this is what it looks like okay so this is the wordpress connection guide and i'm going to follow along with this on another screen so first thing you should do is you should read through this and then you should watch this video which you're watching now and so i've put a notice up here to please read this first so this guide this information this video super supersedes all other connection information for this course so please ignore all other openvpn connection information usernames passwords private key passwords etc with this new connection you don't need to use remote desktop so all your wordpress development will be done directly in your web browser after you connect to the vpn okay so you don't have to worry about remote desktop anymore which should be a a big relief for a lot of students okay so here's our welcome and here's our video walkthrough which you're watching now need help ask the ai tutor i have a tutor that i created to help you with wordpress so if you have wordpress questions you can launch the ai tutor it'll open up a new tab and then you can chat with the tutor about wordpress or if you have connection issues you can also ask the tutor okay so there's that and then information you need before you start so i'll be sending you your openvpn username and password your wordpress ip address your wordpress username which is admin and your wordpress password which is unique to you the private key password is abnormal okay so that's the same for everyone but your openvpn username password and your wordpress password is are unique to you so first thing you do is download and install the openvpn connect client for your operating system so you click on this and then it'll take you to the openvpn site and you download for windows or mac os okay all right and then once it's downloaded and installed then you're ready for the next step so the next step is to download the vpn configuration files so you click on this link i'm not going to click on it because it's going to open up my my personal sharepoint but once you click on that and you download it you will have a file that you need to unzip and in that file are these three files the csc 130 openvpn for off-campus access csc 130 openvpn on campus for on-campus access and then your secret your credential file okay and so that's crucial that after you unzip it you must keep the secret file in the exact same folder as the ovpn file you intend to use okay so here are the files this is the on campus this is the off campus so if you primarily use off campus then you're just going to make sure that these two files are in the same folder if you use on campus these two files have to be in the same folder okay all right and then so once you have the files and they're in the same folder you're going to add your credentials to the secret file and it's just a text file so you'll open it with a plain text editor notepad on windows text edit on mac and on the very first line you enter your username on the second line you enter your password and that's it no extra lines or spaces and you save it okay so let me show you what that looks like so i'm going to this is the secret file i'm going to open it with notepad and there's the username and the password okay and so this is the demo username and password so this is not a real user it's just so i can demo this for you okay so just two lines don't add any extra lines or spaces below or above okay just your username on line one password on line two and save it all right next we are going to import the profile and connect okay so what you're gonna do is you're gonna import the profile that matches your primary location so i'm off campus so i'm going to import the off-campus one okay and to do that you just double click on the file and since i have openvpn installed when i double-click on this it should open up openvpn and ask me if i want to import it so it says a profile is available for import so it gives you the url it gives you the username so you need to verify that this username is correct if this is not the correct username then it's not reading your secret file correctly so make sure that your secret file is in the same folder as your ovpn file okay all right so now that that's correct we just click on connect and then it's going to ask for the private key password and so the private key password is right here abnormal okay so i'm just going to copy that so i don't have to type it and i'm going to paste it in here and i'm going to save the password so i don't have to enter this in every time okay and then now it's asking for the password so this password is the password that is your openvpn password not the private key password so this is your openvpn password which i will send to you okay so let me enter that in and again i'm going to save the password so i don't have to enter that in every time and i'll click on ok and we are connected okay so we are connected to the vpn so that means we're on the college network and now we can access our wordpress site okay so let me close this let me go back to our guide here okay so we just did all this okay and then we connected if you anticipate working from both locations we recommend importing the second profile now as well so let's do that okay so i'm gonna disconnect and then i'm going to import the on campus one okay so i'm going to double click on the on campus one right again verify your username click connect again it's going to ask for the private key password so again that is abnormal and i'm going to save it so i don't have to type it in every time okay and then now i have two profiles in here right so if i'm on campus i use this one if i'm off campus i use this one so since i'm off campus i'm going to connect here okay so there we go we are connected we're ready to go all right next step access your wordpress site so once you're connected to the vpn you can access your personal wordpress container your site is only accessible while the vpn is active so visit your site open a web browser and enter your unique url which will be in this format so it's going to be 10.255.254.1xx where xx is your student number so i created a demo site and so my demo site the url is not in that format it's something different and you can see that it's not secure because we don't have https we don't have certificates installed for these sites because they're internal only okay so here is the demo site so this is what your site will look like when you first get to it and it's just the default wordpress install okay so we can see the site so now we want to log into the dashboard so to log into the dashboard you just add slash wp-admin to your url so up here i'm going to add slash wp-admin okay and hit enter and it's going to take me to the login so my username is admin and my password is the unique password that i will be sending you okay and it's very complex you can't change it so please save it somewhere okay so i have mine saved here and i will just paste it in you can have it remember you if you want and then click login okay and then now you are in your wordpress dashboard so now you can start working on your site making changes and doing all the fun stuff that we're going to be learning about wordpress all right so that's how you log in and then when you want to get out um you can log out or not i don't up to you on these on your wordpress site probably good to always log out all right you can close this and then when you get to your so you're out of wordpress and you just go back to your openvpn and disconnect you disconnect and then you're not working on your wordpress site anymore okay so the big things are to work on your wordpress site after you get openvpn connected you have to connect through openvpn and then once you're done working on your site you log out of wordpress and then you disconnect from openvpn and that's it that's all you have to do to get connected and to use your wordpress site for this semester okay so hopefully this video helps you out if you have any questions remember to use the ai tutor right up here okay and then you can chat with the tutor and ask it questions all right so that's it for this video and we'll see you in class</p>
+                        </div>
+                    </details>
+                </div>
             </section>
 
             <!-- AI Tutor Section -->
@@ -179,32 +212,6 @@
                              <p class="mt-4 text-sm text-red-600 bg-red-100 p-3 rounded-md"><strong>Password Warning:</strong> The WordPress password provided to you is complex and <span class="font-bold">cannot be changed</span>. You must save it in a secure location, such as your browser's password manager or a private file, so you do not lose it.</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Video Walkthrough -->
-            <section class="bg-white p-6 sm:p-8 rounded-lg shadow-md mb-8">
-                <h2 class="text-2xl font-bold mb-4 text-gray-900">Video Walkthrough</h2>
-                <!-- YouTube embed placeholder -->
-                <div class="aspect-w-16 aspect-h-9 video-placeholder rounded-lg flex items-center justify-center">
-                    <!-- In a real scenario, you would replace this div with the YouTube iframe embed code -->
-                     <div class="text-center text-gray-500">
-                        <svg class="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <p class="mt-2 font-semibold">YouTube Video Coming Soon</p>
-                    </div>
-                </div>
-
-                <!-- Transcript Section -->
-                <div class="mt-6">
-                    <details class="group">
-                        <summary class="focusable list-none cursor-pointer font-semibold text-blue-700 hover:underline">
-                            <span class="group-open:hidden">Show Transcript</span>
-                            <span class="hidden group-open:inline">Hide Transcript</span>
-                        </summary>
-                        <div class="mt-4 pt-4 border-t border-gray-200">
-                            <p class="text-gray-600 italic">The transcript for the video walkthrough will be available here once the video is published. This ensures the content is accessible to all students.</p>
-                        </div>
-                    </details>
                 </div>
             </section>
 
