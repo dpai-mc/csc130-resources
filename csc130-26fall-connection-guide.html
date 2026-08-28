@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC130: Web Design and Development Setup — Fall 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Using Tailwind's @apply directive is not possible in a style tag without a build step,
+           so we'll use standard CSS for minor custom styles and rely on Tailwind classes in the HTML. */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind gray-50 */
+        }
+        /* ADA focus styles */
+        .focusable:focus-visible {
+            outline: 3px solid #2563eb; /* Tailwind blue-600 */
+            outline-offset: 2px;
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        /* Aspect ratio plugin is not included in CDN by default, so add custom styles for responsive video */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto max-w-4xl px-4 py-8 sm:py-12">
+
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">CSC130: Web Design and Development</h1>
+            <p class="mt-2 text-lg text-gray-600">WordPress Connection Guide &mdash; Fall 2026</p>
+        </header>
+
+        <main>
+            <!-- Important Notice Section -->
+            <section class="bg-red-100 border-l-4 border-red-500 text-red-800 p-6 sm:p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-red-900">Important Notice: Please Read First</h2>
+                <p class="mb-4 font-semibold">This guide supersedes all other connection information for this course.</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Please ignore all other OpenVPN connection information, usernames, passwords, or private key passwords you may have previously received.</li>
+                    <li>With this connection method, you <span class="font-bold">do not</span> need to use Remote Desktop. All your WordPress development will be done directly in your web browser after connecting to the VPN.</li>
+                    <li>If you have taken this course in a previous semester, <span class="font-bold">the files and the private key password have changed</span>. Download the new files and use the new password below.</li>
+                </ul>
+            </section>
+
+            <!-- Introduction -->
+            <section class="bg-white p-6 sm:p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900">Welcome!</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    This guide will walk you through the initial steps to get connected to the course network and access your personal WordPress development environment. Please follow the steps carefully. The video guide below provides a complete walkthrough of this process.
+                </p>
+            </section>
+
+            <!-- Video Walkthrough -->
+            <section class="bg-white p-6 sm:p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900">Video Walkthrough</h2>
+
+                <!-- Changed-since-recording notice -->
+                <div class="bg-amber-100 border-l-4 border-amber-500 text-amber-900 p-4 rounded-md mb-6">
+                    <p class="font-bold mb-2">Four things have changed since this video was recorded</p>
+                    <p class="mb-2">The overall process is the same. Only these details are different &mdash; <span class="font-semibold">follow the written steps on this page, not the names, password, or files shown in the video</span>:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>The configuration files are now named <code class="bg-amber-200 text-sm p-1 rounded font-mono">client-2026-27.ovpn</code> and <code class="bg-amber-200 text-sm p-1 rounded font-mono">client-2026-27_local.ovpn</code></li>
+                        <li>The private key password has changed &mdash; your instructor will send you the new one</li>
+                        <li>The download link is the one in Step 2 below</li>
+                        <li>The download <span class="font-semibold">no longer includes a <code class="bg-amber-200 text-sm p-1 rounded font-mono">secret</code> file</span> &mdash; you create it yourself, following Step 3</li>
+                    </ul>
+                </div>
+
+                <!-- YouTube embed -->
+                <div class="video-container rounded-lg shadow-md">
+                    <iframe src="https://www.youtube.com/embed/2Zgp4l3MIMM?si=xRelwZp8n1Zw3PLB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <!-- Transcript Section -->
+                <div class="mt-6">
+                    <details class="group">
+                        <summary class="focusable list-none cursor-pointer font-semibold text-blue-700 hover:underline">
+                            <span class="group-open:hidden">Show Transcript</span>
+                            <span class="hidden group-open:inline">Hide Transcript</span>
+                        </summary>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="mb-4 text-sm text-amber-900 bg-amber-100 p-3 rounded-md"><strong>Note:</strong> This is the transcript of the original recording. The file names, private key password, and download link it mentions are out of date &mdash; see the notice above and follow the written steps on this page.</p>
+                            <p class="text-gray-600 leading-relaxed whitespace-pre-wrap">hello maybe i should have done this earlier but this is going to be for the fall semester this is the um connection guide how you're going to connect to wordpress okay and i'm going to walk through this so that you can see it now you may have in your course you may have this stuff you may see this right openvpn ignore all this just ignore it don't follow through with whatever this says ignore it connecting to your virtual machine ignore all this we're not using virtual machines this semester we're just using wordpress sites that you can access through a web browser starting wordpress ignore this as well okay and so this is the guide this is what we're going to follow and i'll walk you through this and this is what it looks like okay so this is the wordpress connection guide and i'm going to follow along with this on another screen so first thing you should do is you should read through this and then you should watch this video which you're watching now and so i've put a notice up here to please read this first so this guide this information this video super supersedes all other connection information for this course so please ignore all other openvpn connection information usernames passwords private key passwords etc with this new connection you don't need to use remote desktop so all your wordpress development will be done directly in your web browser after you connect to the vpn okay so you don't have to worry about remote desktop anymore which should be a a big relief for a lot of students okay so here's our welcome and here's our video walkthrough which you're watching now need help ask the ai tutor i have a tutor that i created to help you with wordpress so if you have wordpress questions you can launch the ai tutor it'll open up a new tab and then you can chat with the tutor about wordpress or if you have connection issues you can also ask the tutor okay so there's that and then information you need before you start so i'll be sending you your openvpn username and password your wordpress ip address your wordpress username which is admin and your wordpress password which is unique to you the private key password is the same for everyone okay so that's the same for everyone but your openvpn username password and your wordpress password is are unique to you so first thing you do is download and install the openvpn connect client for your operating system so you click on this and then it'll take you to the openvpn site and you download for windows or mac os okay all right and then once it's downloaded and installed then you're ready for the next step so the next step is to download the vpn configuration files so you click on this link i'm not going to click on it because it's going to open up my my personal cloud storage but once you click on that and you download it you will have a file that you need to unzip and in that file are these three files the openvpn file for off-campus access the openvpn file for on-campus access and then your secret your credential file okay and so that's crucial that after you unzip it you must keep the secret file in the exact same folder as the ovpn file you intend to use okay so here are the files this is the on campus this is the off campus so if you primarily use off campus then you're just going to make sure that these two files are in the same folder if you use on campus these two files have to be in the same folder okay all right and then so once you have the files and they're in the same folder you're going to add your credentials to the secret file and it's just a text file so you'll open it with a plain text editor notepad on windows text edit on mac and on the very first line you enter your username on the second line you enter your password and that's it no extra lines or spaces and you save it okay so let me show you what that looks like so i'm going to this is the secret file i'm going to open it with notepad and there's the username and the password okay and so this is the demo username and password so this is not a real user it's just so i can demo this for you okay so just two lines don't add any extra lines or spaces below or above okay just your username on line one password on line two and save it all right next we are going to import the profile and connect okay so what you're gonna do is you're gonna import the profile that matches your primary location so i'm off campus so i'm going to import the off-campus one okay and to do that you just double click on the file and since i have openvpn installed when i double-click on this it should open up openvpn and ask me if i want to import it so it says a profile is available for import so it gives you the url it gives you the username so you need to verify that this username is correct if this is not the correct username then it's not reading your secret file correctly so make sure that your secret file is in the same folder as your ovpn file okay all right so now that that's correct we just click on connect and then it's going to ask for the private key password and so the private key password is right here okay so i'm just going to copy that so i don't have to type it and i'm going to paste it in here and i'm going to save the password so i don't have to enter this in every time okay and then now it's asking for the password so this password is the password that is your openvpn password not the private key password so this is your openvpn password which i will send to you okay so let me enter that in and again i'm going to save the password so i don't have to enter that in every time and i'll click on ok and we are connected okay so we are connected to the vpn so that means we're on the college network and now we can access our wordpress site okay so let me close this let me go back to our guide here okay so we just did all this okay and then we connected if you anticipate working from both locations we recommend importing the second profile now as well so let's do that okay so i'm gonna disconnect and then i'm going to import the on campus one okay so i'm going to double click on the on campus one right again verify your username click connect again it's going to ask for the private key password so again that is the same one and i'm going to save it so i don't have to type it in every time okay and then now i have two profiles in here right so if i'm on campus i use this one if i'm off campus i use this one so since i'm off campus i'm going to connect here okay so there we go we are connected we're ready to go all right next step access your wordpress site so once you're connected to the vpn you can access your personal wordpress container your site is only accessible while the vpn is active so visit your site open a web browser and enter your unique url which will be in this format so it's going to be 10.255.254.1xx where xx is your student number so i created a demo site and so my demo site the url is not in that format it's something different and you can see that it's not secure because we don't have https we don't have certificates installed for these sites because they're internal only okay so here is the demo site so this is what your site will look like when you first get to it and it's just the default wordpress install okay so we can see the site so now we want to log into the dashboard so to log into the dashboard you just add slash wp-admin to your url so up here i'm going to add slash wp-admin okay and hit enter and it's going to take me to the login so my username is admin and my password is the unique password that i will be sending you okay and it's very complex you can't change it so please save it somewhere okay so i have mine saved here and i will just paste it in you can have it remember you if you want and then click login okay and then now you are in your wordpress dashboard so now you can start working on your site making changes and doing all the fun stuff that we're going to be learning about wordpress all right so that's how you log in and then when you want to get out um you can log out or not i don't up to you on these on your wordpress site probably good to always log out all right you can close this and then when you get to your so you're out of wordpress and you just go back to your openvpn and disconnect you disconnect and then you're not working on your wordpress site anymore okay so the big things are to work on your wordpress site after you get openvpn connected you have to connect through openvpn and then once you're done working on your site you log out of wordpress and then you disconnect from openvpn and that's it that's all you have to do to get connected and to use your wordpress site for this semester okay so hopefully this video helps you out if you have any questions remember to use the ai tutor right up here okay and then you can chat with the tutor and ask it questions all right so that's it for this video and we'll see you in class</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- AI Tutor Section -->
+            <section class="bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-6 sm:p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-blue-900">Need Help? Ask the AI Tutor!</h2>
+                <p class="mb-4">If you get stuck on a step, have questions about WordPress, or need to troubleshoot your OpenVPN connection, our AI-powered chatbot tutor is available 24/7 to provide instant assistance.</p>
+                <a href="https://www.playlab.ai/project/cmekv2npf00x5l40uku1zwtfy" target="_blank" rel="noopener noreferrer" class="focusable inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+                    Launch the AI Tutor
+                </a>
+            </section>
+
+            <!-- Information Needed Section -->
+            <section class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-6 sm:p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-yellow-900">Information Needed Before Starting</h2>
+                <p class="mb-4">Before you begin, please make sure you have the following credentials. You will receive these from your instructor.</p>
+                <ul class="list-disc list-inside space-y-2 font-semibold">
+                    <li>OpenVPN Username</li>
+                    <li>OpenVPN Password</li>
+                    <li>Private Key Password</li>
+                    <li>WordPress IP Address (Your unique URL)</li>
+                    <li>WordPress Username: <code class="bg-gray-200 text-sm p-1 rounded font-mono">admin</code></li>
+                    <li>WordPress Password (this will be unique to you)</li>
+                </ul>
+                <p class="mt-4 text-sm">Your instructor will send you all of these. The private key password is the same for everyone in the class; your OpenVPN username, OpenVPN password, and WordPress password are unique to you.</p>
+                <p class="mt-2 text-sm">None of these are published on this page. If you don't have them yet, contact your instructor before starting.</p>
+            </section>
+
+            <!-- Step-by-Step Instructions -->
+            <section class="bg-white p-6 sm:p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-6 text-gray-900">Setup Instructions</h2>
+                <div class="space-y-8">
+                    <!-- Step 1: Download OpenVPN -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-lg">1</div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Download OpenVPN Connect</h3>
+                            <p class="mt-1 text-gray-600">Download and install the OpenVPN Connect client for your operating system (Windows, macOS, or Linux).</p>
+                            <a href="https://openvpn.net/client-connect-vpn-for-windows/" target="_blank" rel="noopener noreferrer" class="focusable inline-block mt-3 bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+                                Download OpenVPN
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Step 2: Download Config Files -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-lg">2</div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Download VPN Configuration Files</h3>
+                            <p class="mt-1 text-gray-600">Click the link below to download the VPN configuration files. There are two:</p>
+                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-1">
+                                <li><code class="bg-gray-200 text-sm p-1 rounded">client-2026-27.ovpn</code> (for off-campus access)</li>
+                                <li><code class="bg-gray-200 text-sm p-1 rounded">client-2026-27_local.ovpn</code> (for on-campus access)</li>
+                            </ul>
+                            <p class="mt-2 text-gray-600">Put them somewhere you'll find again &mdash; a folder in your Documents works well. You will create one more file alongside them in the next step.</p>
+                            <a href="https://1drv.ms/f/c/447200bab10d3ac2/IgBPTg3z-rRbTYqhyWJlVG7vAe0YL6CMzl3fWTSYanRcdy4?e=vnrPOe" target="_blank" rel="noopener noreferrer" class="focusable inline-block mt-3 bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+                                Download Configuration Files
+                            </a>
+                            <p class="mt-3 text-gray-600">If you select both files and download them together, OneDrive gives you a single <code class="bg-gray-200 text-sm p-1 rounded">.zip</code> archive &mdash; <span class="font-semibold">unzip it before continuing</span>. Downloading them one at a time gives you the files directly, with nothing to unzip.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3: Add Credentials -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-lg">3</div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Create Your 'secret' Credential File</h3>
+                            <p class="mt-1 text-gray-600">
+                                You will create this file yourself, in the <span class="font-semibold">same folder</span> as the <code class="bg-gray-200 text-sm p-1 rounded">.ovpn</code> files. It holds the OpenVPN username and password your instructor sent you, and it must contain exactly two lines:
+                            </p>
+                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-1">
+                                <li>Line 1: your OpenVPN username</li>
+                                <li>Line 2: your OpenVPN password</li>
+                            </ul>
+                            <p class="mt-2 text-sm text-red-600 bg-red-100 p-3 rounded-md"><strong>Important:</strong> No extra lines, no blank lines, no spaces before or after. Just those two lines.</p>
+
+                            <p class="mt-4 font-semibold text-gray-800">The file must be named <code class="bg-gray-200 text-sm p-1 rounded font-mono">secret</code> with no file extension</p>
+                            <p class="mt-1 text-gray-600">This is the step people most often get wrong. Text editors add <code class="bg-gray-200 text-sm p-1 rounded">.txt</code> automatically, and Windows hides it, so the file looks correct but OpenVPN cannot find it.</p>
+
+                            <div class="mt-3 space-y-3">
+                                <div class="bg-gray-100 p-4 rounded-md">
+                                    <p class="font-semibold text-gray-800">Windows (Notepad)</p>
+                                    <ol class="list-decimal list-inside mt-1 text-gray-600 space-y-1 text-sm">
+                                        <li>Type your two lines in Notepad.</li>
+                                        <li>Choose <span class="font-semibold">File &rarr; Save As</span> and browse to the folder holding your <code class="bg-gray-200 p-1 rounded">.ovpn</code> files.</li>
+                                        <li>Change <span class="font-semibold">Save as type</span> from "Text Documents" to <span class="font-semibold">All Files (*.*)</span>. This is the important part.</li>
+                                        <li>Enter <code class="bg-gray-200 p-1 rounded font-mono">secret</code> as the file name &mdash; nothing after it &mdash; and save.</li>
+                                    </ol>
+                                    <p class="mt-2 text-sm text-gray-600">To check your work, open File Explorer, click <span class="font-semibold">View</span>, and turn on <span class="font-semibold">File name extensions</span>. The file should show as <code class="bg-gray-200 p-1 rounded font-mono">secret</code>, not <code class="bg-gray-200 p-1 rounded font-mono">secret.txt</code>.</p>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-md">
+                                    <p class="font-semibold text-gray-800">macOS (TextEdit)</p>
+                                    <ol class="list-decimal list-inside mt-1 text-gray-600 space-y-1 text-sm">
+                                        <li>Open TextEdit and choose <span class="font-semibold">Format &rarr; Make Plain Text</span> before typing anything.</li>
+                                        <li>Type your two lines.</li>
+                                        <li>Choose <span class="font-semibold">File &rarr; Save</span>, name it <code class="bg-gray-200 p-1 rounded font-mono">secret</code>, and save it into the folder with your <code class="bg-gray-200 p-1 rounded">.ovpn</code> files.</li>
+                                        <li>If macOS asks whether to add the <code class="bg-gray-200 p-1 rounded">.txt</code> extension, choose <span class="font-semibold">Don't use the extension</span>.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Step 4: Import Profile & Connect -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-lg">4</div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Import Profile and Connect</h3>
+                            <p class="mt-1 text-gray-600">
+                                First, import the profile that matches your <span class="font-semibold">primary</span> location (where you'll work most often).
+                            </p>
+                             <ul class="list-disc list-inside mt-2 text-gray-600 space-y-1">
+                                <li>If you are mostly off-campus, import <code class="bg-gray-200 text-sm p-1 rounded">client-2026-27.ovpn</code>.</li>
+                                <li>If you are mostly on-campus, import <code class="bg-gray-200 text-sm p-1 rounded">client-2026-27_local.ovpn</code>.</li>
+                            </ul>
+                            <p class="mt-4 font-semibold text-gray-800">After importing, follow these connection steps:</p>
+                            <ol class="list-decimal list-inside mt-2 space-y-2 text-gray-600">
+                                <li>
+                                    <strong>Verify Username:</strong> The app should display your correct username. This confirms it has found and read your <code class="bg-gray-200 text-sm p-1 rounded">secret</code> file.
+                                    <ul class="list-disc list-inside ml-5 mt-1 text-sm text-red-600">
+                                        <li>If it does <span class="font-bold">not</span> show your username, the cause is almost always the secret file. Check that it is named exactly <code class="bg-gray-200 text-sm p-1 rounded font-mono">secret</code> and not <code class="bg-gray-200 text-sm p-1 rounded font-mono">secret.txt</code>, that it sits in the same folder as the <code class="bg-gray-200 text-sm p-1 rounded">.ovpn</code> file, and that it contains only your username on line 1 and your password on line 2.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <strong>Save Password:</strong> Check the box labeled "Save Private Key Password".
+                                </li>
+                                <li>
+                                    <strong>Enter Password:</strong> When prompted, enter the <span class="font-semibold">private key password</span> your instructor sent you. This is not your OpenVPN password &mdash; it is the shared password that unlocks the certificate, and you will be asked for it before your own password.
+                                </li>
+                                <li>
+                                    <strong>Connect:</strong> Click to connect. If you anticipate working from both locations, we recommend importing the second profile now as well. Follow the same steps to save the private key password so you're prepared to connect from anywhere.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- Step 5: Access WordPress -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-lg">5</div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Access Your WordPress Site</h3>
+                            <p class="mt-1 text-gray-600">Once you are connected to the VPN, you can access your personal WordPress container. Your site is only accessible while the VPN is active.</p>
+                            <ol class="list-decimal list-inside mt-4 space-y-4 text-gray-600">
+                                <li>
+                                    <strong>Visit your site:</strong> Open a web browser and enter your unique URL, which will be in the format: <code class="bg-gray-200 text-sm p-1 rounded font-mono">http://10.255.254.1xx</code> (where <code class="bg-gray-200 text-sm p-1 rounded">xx</code> is your student number).
+                                </li>
+                                <li>
+                                    <strong>Log into the Dashboard:</strong> To edit your site, open a new browser tab and go to your admin dashboard by adding <code class="bg-gray-200 text-sm p-1 rounded">/wp-admin</code> to your URL. For example: <code class="bg-gray-200 text-sm p-1 rounded font-mono">http://10.255.254.1xx/wp-admin</code>.
+                                </li>
+                                <li>
+                                    <strong>Use your credentials:</strong> Log in with the username <code class="bg-gray-200 text-sm p-1 rounded font-mono">admin</code> and the unique, complex password provided by your instructor.
+                                </li>
+                            </ol>
+                             <p class="mt-4 text-sm text-red-600 bg-red-100 p-3 rounded-md"><strong>Password Warning:</strong> The WordPress password provided to you is complex and <span class="font-bold">cannot be changed</span>. You must save it in a secure location, such as your browser's password manager or a private file, so you do not lose it.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certificate Warning Section -->
+            <section class="bg-amber-100 border-l-4 border-amber-500 text-amber-900 p-6 sm:p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-amber-900">Expected: A "Connection Is Not Private" Warning</h2>
+                <p class="mb-4">When you go to <code class="bg-amber-200 text-sm p-1 rounded font-mono">/wp-admin</code>, your browser will show a full-page warning saying the connection is not private, with an error like <code class="bg-amber-200 text-sm p-1 rounded font-mono">NET::ERR_CERT_AUTHORITY_INVALID</code>.</p>
+                <p class="mb-4 font-semibold">This is expected and your site has not been compromised.</p>
+                <p class="mb-4">These sites use a self-signed security certificate because they exist only on the private course network and are never reachable from the public internet. Browsers do not recognize self-signed certificates, so they warn you. Your connection is already encrypted by the VPN.</p>
+                <p class="font-semibold mb-2">To continue:</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li><span class="font-semibold">Chrome or Edge:</span> click <span class="font-bold">Advanced</span>, then <span class="font-bold">Proceed to 10.255.254.1xx (unsafe)</span>.</li>
+                    <li><span class="font-semibold">Firefox:</span> click <span class="font-bold">Advanced</span>, then <span class="font-bold">Accept the Risk and Continue</span>.</li>
+                    <li><span class="font-semibold">Safari:</span> click <span class="font-bold">Show Details</span>, then <span class="font-bold">visit this website</span>.</li>
+                </ul>
+                <p class="mt-4 text-sm">You will usually only need to do this once per browser.</p>
+            </section>
+
+            <!-- Credentials Section -->
+            <section id="credentials" class="bg-white p-6 sm:p-8 rounded-lg shadow-md">
+                 <h2 class="text-2xl font-bold mb-6 text-gray-900">Your WordPress Credentials</h2>
+                 <div class="space-y-4">
+                    <!-- URL -->
+                    <div class="flex flex-wrap items-center justify-between">
+                         <label for="wp-url" class="font-semibold text-gray-700">Your WordPress URL:</label>
+                         <div class="flex items-center space-x-2 mt-2 sm:mt-0 w-full sm:w-auto">
+                            <input id="wp-url" type="text" value="http://10.255.254.1xx" readonly class="w-full sm:w-64 bg-gray-100 border border-gray-300 rounded-md px-3 py-2 text-gray-600 focus:outline-none">
+                            <button onclick="copyToClipboard('wp-url')" aria-label="Copy WordPress URL" class="focusable flex-shrink-0 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold p-2 rounded-md transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H6zM8 7a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1zm-1 4a1 1 0 100 2h4a1 1 0 100-2H7z"></path></svg>
+                            </button>
+                         </div>
+                    </div>
+                     <!-- Username -->
+                    <div class="flex flex-wrap items-center justify-between">
+                         <label for="wp-user" class="font-semibold text-gray-700">Username:</label>
+                         <div class="flex items-center space-x-2 mt-2 sm:mt-0 w-full sm:w-auto">
+                            <input id="wp-user" type="text" value="admin" readonly class="w-full sm:w-64 bg-gray-100 border border-gray-300 rounded-md px-3 py-2 text-gray-600 focus:outline-none">
+                            <button onclick="copyToClipboard('wp-user')" aria-label="Copy Username" class="focusable flex-shrink-0 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold p-2 rounded-md transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H6zM8 7a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1zm-1 4a1 1 0 100 2h4a1 1 0 100-2H7z"></path></svg>
+                            </button>
+                         </div>
+                    </div>
+                     <!-- Password -->
+                    <div class="flex flex-wrap items-center justify-between">
+                         <label for="wp-pass" class="font-semibold text-gray-700">Initial Password:</label>
+                         <div class="flex items-center space-x-2 mt-2 sm:mt-0 w-full sm:w-auto">
+                            <input id="wp-pass" type="text" value="will-be-provided" readonly class="w-full sm:w-64 bg-gray-100 border border-gray-300 rounded-md px-3 py-2 text-gray-600 focus:outline-none">
+                            <button onclick="copyToClipboard('wp-pass')" aria-label="Copy Password" class="focusable flex-shrink-0 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold p-2 rounded-md transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2H6zM8 7a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1zm-1 4a1 1 0 100 2h4a1 1 0 100-2H7z"></path></svg>
+                            </button>
+                         </div>
+                    </div>
+                 </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>&copy; 2026 David Pai</p>
+        </footer>
+
+        <!-- Simple toast notification for copy feedback -->
+        <div id="toast" class="fixed bottom-5 right-5 bg-gray-900 text-white py-2 px-5 rounded-md shadow-lg opacity-0 transition-opacity duration-300">
+            Copied to clipboard!
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Copies the value of a given input element ID to the clipboard.
+         * We use the document.execCommand('copy') method for broad compatibility,
+         * especially in sandboxed environments like iframes.
+         * @param {string} elementId The ID of the input element to copy from.
+         */
+        function copyToClipboard(elementId) {
+            const input = document.getElementById(elementId);
+            // The input must be selectable to be copied. `readonly` inputs are selectable.
+            input.select();
+            input.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert('Oops, unable to copy. Please copy the text manually.');
+            }
+
+            // Deselect the text after copying
+            window.getSelection().removeAllRanges();
+        }
+
+        /**
+         * Shows a toast notification for a brief period.
+         */
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+            }, 2000); // Hide after 2 seconds
+        }
+    </script>
+</body>
+</html>
